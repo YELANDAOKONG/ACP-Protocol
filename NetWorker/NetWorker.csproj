@@ -10,4 +10,8 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ACPLibrary\ACPLibrary.csproj" />
+    </ItemGroup>
 </Project>
