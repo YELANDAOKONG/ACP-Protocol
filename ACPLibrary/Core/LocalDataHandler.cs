@@ -29,9 +29,13 @@ public class LocalDataHandler
     
     private void TcpHandlerThread(Socket socket)
     {
-        while (true)
+        try
         {
             
+        }
+        catch (Exception ex)
+        {
+                
         }
     }
 
