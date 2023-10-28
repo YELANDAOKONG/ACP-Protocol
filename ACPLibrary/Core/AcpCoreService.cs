@@ -5,15 +5,18 @@ namespace ACPLibrary.Core;
 
 public class AcpCoreService
 {
-    private Socket NetworkTcpSocket;
-    private Socket NetworkTcpSocketV6;
-    private Socket NetworkUdpSocket;
-    private Socket NetworkUdpSocketV6;
-    private Socket LocalUdpSocket;
-    private Socket LocalUdpSocketV6;
+    public Socket NetworkTcpSocket;
+    public Socket NetworkTcpSocketV6;
+    public Socket NetworkUdpSocket;
+    public Socket NetworkUdpSocketV6;
+    public Socket LocalUdpSocket;
+    public Socket LocalUdpSocketV6;
 
-    private readonly int NetworkUdpPort = 743;
-    private readonly int LocalUdpPort = 1743;
+    public readonly int NetworkUdpPort = 743;
+    public readonly int LocalUdpPort = 1743;
+
+    private NetworkDataHandler NetworkHandler;
+    private LocalDataHandler LocalHandler;
 
     public AcpCoreService()
     {
@@ -49,6 +52,14 @@ public class AcpCoreService
         
         this.LocalUdpSocket.Bind(new IPEndPoint(IPAddress.Loopback, this.LocalUdpPort));
         this.LocalUdpSocketV6.Bind(new IPEndPoint(IPAddress.IPv6Loopback, this.LocalUdpPort));
-        
+
+        this.NetworkHandler = new NetworkDataHandler(this);
+        this.LocalHandler = new LocalDataHandler(this);
+
+        this.NetworkHandler.Register();
+        this.LocalHandler.Register();
     }
+    
+    
+    
 }
